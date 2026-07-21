@@ -240,7 +240,7 @@ function OnePager() {
                   <span className="font-semibold text-foreground">
                     Municipalidad de Urubamba
                   </span>{" "}
-                  — piloto confirmado, inicio en abril 2026
+                  — piloto confirmado, inicio en julio 2026
                 </>,
                 <>
                   <span className="font-semibold text-foreground">
@@ -250,8 +250,8 @@ function OnePager() {
                   informal positivo
                 </>,
                 <>
-                  🏆 <span className="font-semibold text-foreground">Finalista</span> — Reto de
-                  Innovación Abierta, Municipalidad de Miraflores — concurso en curso
+                  🏆 <span className="font-semibold text-foreground">Ganadores</span> — Reto de
+                  Innovación Abierta, Municipalidad de Miraflores — junio 2026
                 </>,
                 <>
                   <span className="font-semibold text-foreground">PUCP</span> — caso real en
