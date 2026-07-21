@@ -88,8 +88,8 @@ function ModuleCard({
           className={
             "rounded px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest " +
             (statusTone === "green"
-              ? "bg-emerald-500/15 text-emerald-400"
-              : "bg-amber-400/15 text-amber-300")
+              ? "bg-brand-green/15 text-brand-green"
+              : "bg-accent-gold/20 text-accent-gold")
           }
         >
           {status}
@@ -134,7 +134,7 @@ function TeamCard({
   bio: string;
 }) {
   return (
-    <div className="flex flex-col gap-4 border border-border/40 bg-card/40 p-6">
+    <div className="flex flex-col gap-4 border border-border bg-muted p-6">
       <div className="flex h-12 w-12 items-center justify-center rounded-md bg-accent-gold font-serif text-lg font-bold text-primary">
         {initials}
       </div>
@@ -279,7 +279,7 @@ function OnePager() {
         </section>
 
         {/* Modules */}
-        <section className="mt-6 grid gap-px overflow-hidden border border-border/40 bg-border/40 md:grid-cols-3">
+        <section className="mt-6 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
           <ModuleCard
             number="01"
             status="En construcción"
@@ -331,7 +331,7 @@ function OnePager() {
           <h2 className="font-serif text-2xl leading-snug">
             SaaS para gobiernos locales: suscripción anual por municipio, con módulos escalables.
           </h2>
-          <div className="mt-6 grid gap-px overflow-hidden border border-border/40 bg-border/40 md:grid-cols-3">
+          <div className="mt-6 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
             <div className="bg-card p-6">
               <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold">
                 Plan Básico
@@ -396,7 +396,7 @@ function OnePager() {
               "Open Society Foundations",
               "Digital Public Goods Alliance",
             ].map((f) => (
-              <li key={f} className="border border-border/50 bg-card/40 px-3 py-3">
+              <li key={f} className="border border-border bg-muted px-3 py-3">
                 {f}
               </li>
             ))}
