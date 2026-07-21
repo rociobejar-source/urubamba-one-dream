@@ -406,7 +406,13 @@ function OnePager() {
         {/* Team */}
         <section className="mt-16">
           <SectionLabel>El equipo</SectionLabel>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-3">
+            <TeamCard
+              initials="RB"
+              name="Rocío Béjar"
+              role="Liderazgo de proyecto"
+              bio="Lidera la estrategia, coordinación institucional y crecimiento de ExpedienteCheck. Encargada de articular relaciones con municipios, gobiernos regionales y aliados del ecosistema GovTech, asegurando que la plataforma responda a las necesidades reales de los equipos locales de inversión pública."
+            />
             <TeamCard
               initials="MB"
               name="Marco Béjar"
