@@ -325,6 +325,51 @@ function OnePager() {
           />
         </section>
 
+        {/* Business model */}
+        <section className="mt-16">
+          <SectionLabel>Modelo de negocio</SectionLabel>
+          <h2 className="font-serif text-2xl leading-snug">
+            SaaS para gobiernos locales: suscripción anual por municipio, con módulos escalables.
+          </h2>
+          <div className="mt-6 grid gap-px overflow-hidden border border-border/40 bg-border/40 md:grid-cols-3">
+            <div className="bg-card p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold">
+                Plan Básico
+              </p>
+              <h3 className="mt-2 font-serif text-lg">Monitor de Obras</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Tablero en tiempo real, alertas de riesgo y trazabilidad de proyectos para un
+                municipio.
+              </p>
+            </div>
+            <div className="bg-primary p-6 text-primary-foreground">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-80">
+                Plan Profesional
+              </p>
+              <h3 className="mt-2 font-serif text-lg">Monitor + Checklist</h3>
+              <p className="mt-3 text-sm leading-relaxed opacity-90">
+                Revisión digital de expedientes y monitoreo combinados. Ideal para equipos técnicos
+                que quieren cerrar el ciclo preventivo.
+              </p>
+            </div>
+            <div className="bg-card p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold">
+                Plan Institucional
+              </p>
+              <h3 className="mt-2 font-serif text-lg">Full Stack + IA</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Los tres módulos, multi-municipio, asistente normativo con IA, soporte dedicado e
+                integraciones a medida.
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Ingresos recurrentes por licencia anual + servicios de implementación, capacitación y
+            soporte. Escalable a regiones, mancomunidades y programas nacionales de inversión
+            pública.
+          </p>
+        </section>
+
         {/* What we're looking for */}
         <section className="mt-16 grid gap-10 md:grid-cols-[1.1fr_1fr]">
           <div>
