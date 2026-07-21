@@ -406,13 +406,7 @@ function OnePager() {
         {/* Team */}
         <section className="mt-16">
           <SectionLabel>El equipo</SectionLabel>
-          <div className="grid gap-6 md:grid-cols-3">
-            <TeamCard
-              initials="RB"
-              name="Rocío Béjar Gutiérrez"
-              role="Fundadora y CEO"
-              bio="17 años en la intersección de inversión pública, política digital e innovación. Ex Directora General de Inversión Pública del MEF — diseñó el sistema Invierte.pe, la infraestructura sobre la que opera ExpedienteCheck. Product Owner en el laboratorio de innovación de Credicorp. Consultora de GIZ y Banco Mundial/IFC. Docente en el posgrado de Gobierno y Políticas Públicas de la PUCP."
-            />
+          <div className="grid gap-6 md:grid-cols-2">
             <TeamCard
               initials="MB"
               name="Marco Béjar"
@@ -431,10 +425,9 @@ function OnePager() {
         {/* Footer */}
         <footer className="mt-16 flex flex-col gap-2 border-t border-border/60 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <div>
-            <span className="font-semibold text-foreground">Rocío Béjar Gutiérrez</span> ·
-            Fundadora, ExpedienteCheck
+            <span className="font-semibold text-foreground">ExpedienteCheck</span> · Lima, Perú
             <br />
-            Lima, Perú · Disponible para reuniones y llamadas a nivel regional e internacional
+            Disponible para reuniones y llamadas a nivel regional e internacional
           </div>
           <a
             href="https://www.expedientecheck.com"
