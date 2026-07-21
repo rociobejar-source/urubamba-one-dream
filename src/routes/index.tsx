@@ -1,24 +1,404 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "ExpedienteCheck — GovTech para la inversión pública en Perú" },
+      {
+        name: "description",
+        content:
+          "Plataforma GovTech que ayuda a municipios peruanos a revisar expedientes, consultar normativa con IA y monitorear obras en riesgo en tiempo real.",
+      },
+      { property: "og:title", content: "ExpedienteCheck — Tecnología al servicio de la inversión pública" },
+      {
+        property: "og:description",
+        content:
+          "Tres módulos, tres pilotos activos (Tacna, Coronel Portillo y Urubamba). Datos de MEF, INFOBRAS y SEACE al alcance de los equipos locales.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "ExpedienteCheck" },
+      {
+        name: "twitter:description",
+        content:
+          "GovTech para inversión pública en Perú. Tres módulos, tres pilotos activos.",
+      },
+    ],
+  }),
+  component: OnePager,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="border-t border-border/60 pt-4">
+      <div className="font-serif text-3xl text-foreground">
+        <span className="text-accent-gold">{value}</span>
+      </div>
+      <p className="mt-2 text-sm leading-snug text-muted-foreground">{label}</p>
+    </div>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-4 flex items-center gap-3">
+      <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold">
+        {children}
+      </span>
+      <span className="h-px flex-1 bg-border/50" />
+    </div>
+  );
+}
+
+function ModuleCard({
+  number,
+  status,
+  statusTone,
+  tag,
+  tagTone,
+  title,
+  description,
+  bullets,
+  footer,
+  dark,
+}: {
+  number: string;
+  status: string;
+  statusTone: "amber" | "green";
+  tag?: string;
+  tagTone?: "outline" | "solid";
+  title: string;
+  description: string;
+  bullets: string[];
+  footer?: string;
+  dark?: boolean;
+}) {
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+      className={
+        "flex flex-col gap-4 p-6 " +
+        (dark ? "bg-primary text-primary-foreground" : "bg-card text-card-foreground")
+      }
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+      <div className="flex items-center justify-between">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-70">
+          Módulo {number}
+        </span>
+        <span
+          className={
+            "rounded px-2 py-0.5 text-[10px] font-semibold uppercase tracking-widest " +
+            (statusTone === "green"
+              ? "bg-emerald-500/15 text-emerald-400"
+              : "bg-amber-400/15 text-amber-300")
+          }
+        >
+          {status}
+        </span>
+      </div>
+      {tag && (
+        <div
+          className={
+            "self-start rounded px-2 py-1 text-[10px] font-semibold uppercase tracking-widest " +
+            (tagTone === "solid"
+              ? "bg-accent-gold text-primary"
+              : "border border-accent-gold text-accent-gold")
+          }
+        >
+          ✦ {tag}
+        </div>
+      )}
+      <h3 className="font-serif text-xl leading-tight">{title}</h3>
+      <p className="text-sm leading-relaxed opacity-85">{description}</p>
+      <ul className="space-y-2 text-sm">
+        {bullets.map((b) => (
+          <li key={b} className="flex gap-2">
+            <span className="text-accent-gold">—</span>
+            <span className="opacity-90">{b}</span>
+          </li>
+        ))}
+      </ul>
+      {footer && <p className="mt-auto pt-2 text-sm italic text-accent-gold">{footer}</p>}
     </div>
+  );
+}
+
+function TeamCard({
+  initials,
+  name,
+  role,
+  bio,
+}: {
+  initials: string;
+  name: string;
+  role: string;
+  bio: string;
+}) {
+  return (
+    <div className="flex flex-col gap-4 border border-border/40 bg-card/40 p-6">
+      <div className="flex h-12 w-12 items-center justify-center rounded-md bg-accent-gold font-serif text-lg font-bold text-primary">
+        {initials}
+      </div>
+      <div>
+        <h3 className="font-serif text-lg text-foreground">{name}</h3>
+        <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-gold">
+          {role}
+        </p>
+      </div>
+      <p className="text-sm leading-relaxed text-muted-foreground">{bio}</p>
+    </div>
+  );
+}
+
+function OnePager() {
+  return (
+    <main className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16">
+        {/* Header */}
+        <header className="flex flex-col items-start justify-between gap-4 border-b border-border/60 pb-6 md:flex-row md:items-end">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+              GovTech · Inversión Pública · Perú
+            </p>
+            <h1 className="mt-2 font-serif text-4xl md:text-5xl">
+              Expediente<span className="text-accent-gold">Check</span>
+            </h1>
+          </div>
+          <div className="text-left md:text-right">
+            <p className="font-serif italic text-muted-foreground">
+              Tecnología al servicio
+              <br />
+              de la inversión pública
+            </p>
+            <a
+              href="https://www.expedientecheck.com"
+              className="mt-1 inline-block text-sm font-medium text-accent-gold hover:underline"
+            >
+              www.expedientecheck.com
+            </a>
+          </div>
+        </header>
+
+        {/* Lede */}
+        <section className="mt-8 border-l-2 border-accent-gold bg-muted/50 px-6 py-6">
+          <p className="font-serif text-lg leading-relaxed md:text-xl">
+            Los municipios peruanos gestionan{" "}
+            <span className="font-semibold">S/ 24,000 millones</span> en inversión pública al año —
+            con equipos técnicos reducidos, normativa compleja y sin herramientas para detectar
+            problemas antes de que escalen. ExpedienteCheck cambia eso.
+          </p>
+        </section>
+
+        {/* Stats */}
+        <section className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
+          <Stat value="S/24B" label="en inversión pública local gestionada al año en Perú" />
+          <Stat value="~1,874" label="municipios con capacidad digital de monitoreo casi nula" />
+          <Stat value="3" label="pilotos activos con acuerdos institucionales firmados" />
+          <Stat value="+331" label="obras paralizadas solo en GORE Puno (Contraloría 2025)" />
+        </section>
+
+        {/* Problem + Traction */}
+        <section className="mt-14 grid gap-10 md:grid-cols-2">
+          <div>
+            <SectionLabel>El problema</SectionLabel>
+            <h2 className="font-serif text-2xl leading-snug">
+              Los datos existen. La capacidad de actuar sobre ellos, no.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Invierte.pe genera datos ricos: aprobaciones, presupuesto, avance de obras. Pero
+              viven en silos nacionales — MEF, INFOBRAS, SEACE — invisibles para los equipos
+              locales que son responsables de ejecutar.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              El resultado: decisiones a ciegas, proyectos paralizados, órganos de control que
+              llegan tarde. No es un problema de datos. Es un{" "}
+              <span className="font-semibold text-foreground">
+                problema de usabilidad y gobernanza.
+              </span>
+            </p>
+          </div>
+
+          <div>
+            <SectionLabel>Tracción</SectionLabel>
+            <h2 className="font-serif text-2xl leading-snug">
+              Pilotos en vivo. Datos reales. Reconocimiento en curso.
+            </h2>
+            <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+              {[
+                <>
+                  <span className="font-semibold text-foreground">
+                    Municipalidad Provincial de Tacna
+                  </span>{" "}
+                  — acuerdo firmado; datos reales cargados en plataforma
+                </>,
+                <>
+                  <span className="font-semibold text-foreground">
+                    Municipalidad de Coronel Portillo
+                  </span>{" "}
+                  — piloto activo con subdominio propio desplegado
+                </>,
+                <>
+                  <span className="font-semibold text-foreground">
+                    Municipalidad de Urubamba
+                  </span>{" "}
+                  — piloto confirmado, inicio en abril 2026
+                </>,
+                <>
+                  <span className="font-semibold text-foreground">
+                    LAC AI Accelerator, Banco Mundial
+                  </span>{" "}
+                  — propuesta presentada con GORE Puno como respaldo institucional; feedback
+                  informal positivo
+                </>,
+                <>
+                  🏆 <span className="font-semibold text-foreground">Finalista</span> — Reto de
+                  Innovación Abierta, Municipalidad de Miraflores — concurso en curso
+                </>,
+                <>
+                  <span className="font-semibold text-foreground">PUCP</span> — caso real en
+                  posgrado de Gestión de Inversión Pública
+                </>,
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="text-accent-gold">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Platform intro */}
+        <section className="mt-14 flex flex-col gap-2 border-y border-border/60 bg-muted/40 px-6 py-5 md:flex-row md:items-center md:gap-8">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold md:w-64">
+            La plataforma · tres módulos
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Solución modular que acompaña todo el ciclo del proyecto — desde la revisión del
+            expediente hasta el monitoreo en tiempo real de la obra en campo.
+          </p>
+        </section>
+
+        {/* Modules */}
+        <section className="mt-6 grid gap-px overflow-hidden border border-border/40 bg-border/40 md:grid-cols-3">
+          <ModuleCard
+            number="01"
+            status="En construcción"
+            statusTone="amber"
+            tag="Componente IA"
+            tagTone="outline"
+            title="Checklist Digital Inteligente"
+            description="Revisa automáticamente si un expediente técnico cumple los requisitos normativos vigentes — Invierte.pe, RNE, Directiva 001-2019-EF — antes de que llegue a aprobación."
+            bullets={[
+              "Detección de errores y observaciones priorizadas",
+              "IA aplicada a la lectura de documentos técnicos",
+              "Reducción del ciclo de revisión",
+            ]}
+          />
+          <ModuleCard
+            dark
+            number="02"
+            status="En construcción"
+            statusTone="amber"
+            tag="Módulo central de IA"
+            tagTone="solid"
+            title="Asistente Normativo con IA (RAG)"
+            description="Asistente de lenguaje natural entrenado en la normativa peruana de inversión pública. Responde consultas técnicas en segundos — sin búsquedas en PDFs dispersos ni esperas."
+            bullets={[
+              "Base: Invierte.pe, RNE, directivas MEF, circulares ANIN",
+              "Respuestas con citas normativas verificables",
+              "Accesible para funcionarios sin perfil especializado",
+              "Actualizable ante cambios normativos en tiempo real",
+            ]}
+            footer="La IA no reemplaza el juicio técnico. Lo fortalece."
+          />
+          <ModuleCard
+            number="03"
+            status="Desarrollado"
+            statusTone="green"
+            title="Monitor de Obras en Riesgo"
+            description="Tablero en tiempo real que agrega datos de MEF, INFOBRAS y SEACE para detectar obras en riesgo de paralización antes de que ocurra. Ya operando en los pilotos activos."
+            bullets={[
+              "Alertas automáticas por proyecto y nivel de riesgo",
+              "Trazabilidad completa del estado de cada obra",
+              "Arquitectura multi-municipio: una plataforma, múltiples instancias",
+            ]}
+          />
+        </section>
+
+        {/* What we're looking for */}
+        <section className="mt-16 grid gap-10 md:grid-cols-[1.1fr_1fr]">
+          <div>
+            <SectionLabel>Lo que buscamos</SectionLabel>
+            <h2 className="font-serif text-2xl leading-snug">
+              Conexiones con financiadores de desarrollo, fondos de civic tech e inversores GovTech
+              activos en LAC.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Estamos en el momento en que la introducción correcta — más que el capital directo —
+              es lo que acelera el crecimiento. Buscamos conexiones con fondos y programas
+              alineados con capacidad digital de gobiernos locales, transparencia en inversión
+              pública y tecnología cívica en América Latina.
+            </p>
+          </div>
+          <ul className="grid grid-cols-2 gap-2 self-center text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            {[
+              "BID / BID Lab",
+              "Banco Mundial GovTech",
+              "Bloomberg Philanthropies",
+              "UNICEF Venture Fund",
+              "Omidyar Network",
+              "CAF GovTech",
+              "Open Society Foundations",
+              "Digital Public Goods Alliance",
+            ].map((f) => (
+              <li key={f} className="border border-border/50 bg-card/40 px-3 py-3">
+                {f}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Team */}
+        <section className="mt-16">
+          <SectionLabel>El equipo</SectionLabel>
+          <div className="grid gap-6 md:grid-cols-3">
+            <TeamCard
+              initials="RB"
+              name="Rocío Béjar Gutiérrez"
+              role="Fundadora y CEO"
+              bio="17 años en la intersección de inversión pública, política digital e innovación. Ex Directora General de Inversión Pública del MEF — diseñó el sistema Invierte.pe, la infraestructura sobre la que opera ExpedienteCheck. Product Owner en el laboratorio de innovación de Credicorp. Consultora de GIZ y Banco Mundial/IFC. Docente en el posgrado de Gobierno y Políticas Públicas de la PUCP."
+            />
+            <TeamCard
+              initials="MB"
+              name="Marco Béjar"
+              role="Arquitectura tecnológica y seguridad"
+              bio="Responsable del desarrollo, arquitectura tecnológica y seguridad de la plataforma. Lidera el diseño técnico del sistema con foco en la integridad de los datos, la escalabilidad y las buenas prácticas de desarrollo de software para entornos institucionales. Más de 15 años desarrollando soluciones empresariales para grandes organizaciones en sectores como telecomunicaciones y retail."
+            />
+            <TeamCard
+              initials="SP"
+              name="Rodrigo Silva"
+              role="Full Stack Developer · La Libertad"
+              bio="Especialista en construcción de APIs REST escalables y automatización de procesos críticos de negocio con Python y Node.js. Actualmente voluntario como científico de datos en AENUP. Experiencia en desarrollo de bots RPA con Playwright para SUNAT en Grupo Ormasan, reduciendo procesos de horas a minutos."
+            />
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="mt-16 flex flex-col gap-2 border-t border-border/60 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <div>
+            <span className="font-semibold text-foreground">Rocío Béjar Gutiérrez</span> ·
+            Fundadora, ExpedienteCheck
+            <br />
+            Lima, Perú · Disponible para reuniones y llamadas a nivel regional e internacional
+          </div>
+          <a
+            href="https://www.expedientecheck.com"
+            className="font-medium text-accent-gold hover:underline"
+          >
+            www.expedientecheck.com
+          </a>
+        </footer>
+      </div>
+    </main>
   );
 }
