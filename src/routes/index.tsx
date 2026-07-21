@@ -240,7 +240,7 @@ function OnePager() {
                   <span className="font-semibold text-foreground">
                     Municipalidad de Urubamba
                   </span>{" "}
-                  — piloto confirmado, inicio en abril 2026
+                  — piloto confirmado, inicio en julio 2026
                 </>,
                 <>
                   <span className="font-semibold text-foreground">
@@ -250,8 +250,8 @@ function OnePager() {
                   informal positivo
                 </>,
                 <>
-                  🏆 <span className="font-semibold text-foreground">Finalista</span> — Reto de
-                  Innovación Abierta, Municipalidad de Miraflores — concurso en curso
+                  🏆 <span className="font-semibold text-foreground">Ganadores</span> — Reto de
+                  Innovación Abierta, Municipalidad de Miraflores — junio 2026
                 </>,
                 <>
                   <span className="font-semibold text-foreground">PUCP</span> — caso real en
@@ -325,6 +325,51 @@ function OnePager() {
           />
         </section>
 
+        {/* Business model */}
+        <section className="mt-16">
+          <SectionLabel>Modelo de negocio</SectionLabel>
+          <h2 className="font-serif text-2xl leading-snug">
+            SaaS para gobiernos locales: suscripción anual por municipio, con módulos escalables.
+          </h2>
+          <div className="mt-6 grid gap-px overflow-hidden border border-border/40 bg-border/40 md:grid-cols-3">
+            <div className="bg-card p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold">
+                Plan Básico
+              </p>
+              <h3 className="mt-2 font-serif text-lg">Monitor de Obras</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Tablero en tiempo real, alertas de riesgo y trazabilidad de proyectos para un
+                municipio.
+              </p>
+            </div>
+            <div className="bg-primary p-6 text-primary-foreground">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] opacity-80">
+                Plan Profesional
+              </p>
+              <h3 className="mt-2 font-serif text-lg">Monitor + Checklist</h3>
+              <p className="mt-3 text-sm leading-relaxed opacity-90">
+                Revisión digital de expedientes y monitoreo combinados. Ideal para equipos técnicos
+                que quieren cerrar el ciclo preventivo.
+              </p>
+            </div>
+            <div className="bg-card p-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-gold">
+                Plan Institucional
+              </p>
+              <h3 className="mt-2 font-serif text-lg">Full Stack + IA</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Los tres módulos, multi-municipio, asistente normativo con IA, soporte dedicado e
+                integraciones a medida.
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Ingresos recurrentes por licencia anual + servicios de implementación, capacitación y
+            soporte. Escalable a regiones, mancomunidades y programas nacionales de inversión
+            pública.
+          </p>
+        </section>
+
         {/* What we're looking for */}
         <section className="mt-16 grid gap-10 md:grid-cols-[1.1fr_1fr]">
           <div>
@@ -361,13 +406,7 @@ function OnePager() {
         {/* Team */}
         <section className="mt-16">
           <SectionLabel>El equipo</SectionLabel>
-          <div className="grid gap-6 md:grid-cols-3">
-            <TeamCard
-              initials="RB"
-              name="Rocío Béjar Gutiérrez"
-              role="Fundadora y CEO"
-              bio="17 años en la intersección de inversión pública, política digital e innovación. Ex Directora General de Inversión Pública del MEF — diseñó el sistema Invierte.pe, la infraestructura sobre la que opera ExpedienteCheck. Product Owner en el laboratorio de innovación de Credicorp. Consultora de GIZ y Banco Mundial/IFC. Docente en el posgrado de Gobierno y Políticas Públicas de la PUCP."
-            />
+          <div className="grid gap-6 md:grid-cols-2">
             <TeamCard
               initials="MB"
               name="Marco Béjar"
@@ -386,10 +425,9 @@ function OnePager() {
         {/* Footer */}
         <footer className="mt-16 flex flex-col gap-2 border-t border-border/60 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <div>
-            <span className="font-semibold text-foreground">Rocío Béjar Gutiérrez</span> ·
-            Fundadora, ExpedienteCheck
+            <span className="font-semibold text-foreground">ExpedienteCheck</span> · Lima, Perú
             <br />
-            Lima, Perú · Disponible para reuniones y llamadas a nivel regional e internacional
+            Disponible para reuniones y llamadas a nivel regional e internacional
           </div>
           <a
             href="https://www.expedientecheck.com"
