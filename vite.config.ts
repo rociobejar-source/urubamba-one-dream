@@ -7,9 +7,18 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Skip Nitro entirely: we deploy a pure static SPA to GitHub Pages, so there is
+  // no server/worker to build. Without this, Nitro's default (Cloudflare) preset
+  // writes the server to .output/ while the SPA prerender step looks for it in
+  // dist/server/server.js, breaking the build.
+  nitro: false,
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    // Static prerender (SSG): render the real HTML of every route into static
+    // .html files at build time. The site has no server data deps, so this gives
+    // full content + meta on first paint (good SEO) and is servable by GitHub Pages.
+    prerender: { enabled: true, crawlLinks: true },
+    pages: [{ path: "/", prerender: { enabled: true } }],
   },
 });
