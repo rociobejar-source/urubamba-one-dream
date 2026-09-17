@@ -269,7 +269,7 @@ function OnePager() {
         <section className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
           <Stat value="S/24B" label="en inversión pública local gestionada al año en Perú" />
           <Stat value="~1,874" label="municipios con capacidad digital de monitoreo casi nula" />
-          <Stat value="8" label="municipalidades con monitor de obras ya operando" />
+          <Stat value="7" label="municipalidades con monitor de obras ya operando" />
           <Stat value="+331" label="obras paralizadas solo en GORE Puno (Contraloría 2025)" />
         </section>
 
