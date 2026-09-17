@@ -149,7 +149,90 @@ function TeamCard({
   );
 }
 
+function MunicipalityCard({
+  scope,
+  region,
+  name,
+  works,
+}: {
+  scope: string;
+  region: string;
+  name: string;
+  works: number;
+}) {
+  return (
+    <div className="flex flex-col gap-3 border border-border bg-card p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-gold">
+            {scope}
+          </p>
+          <p className="mt-1 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
+            {region}
+          </p>
+        </div>
+        <div className="rounded bg-muted px-2 py-1 text-xs font-semibold text-foreground">
+          {works} obras
+        </div>
+      </div>
+      <h3 className="font-serif text-lg leading-tight text-foreground">{name}</h3>
+      <p className="text-sm text-muted-foreground">Obras en seguimiento: {works}</p>
+    </div>
+  );
+}
+
 function OnePager() {
+  const municipalities = [
+    {
+      scope: "Municipalidad Distrital",
+      region: "Lima",
+      name: "Municipalidad Distrital de Miraflores",
+      works: 22,
+    },
+    {
+      scope: "Municipalidad Distrital",
+      region: "Ancash",
+      name: "Municipalidad Distrital de Rapayan",
+      works: 28,
+    },
+    {
+      scope: "Municipalidad Distrital",
+      region: "Cajamarca",
+      name: "Municipalidad Distrital de Sallique",
+      works: 15,
+    },
+    {
+      scope: "Municipalidad Distrital",
+      region: "Lima",
+      name: "Municipalidad Distrital de Santiago de Surco",
+      works: 14,
+    },
+    {
+      scope: "Municipalidad Distrital",
+      region: "Cajamarca",
+      name: "Municipalidad Distrital de Tabaconas",
+      works: 42,
+    },
+    {
+      scope: "Municipalidad Distrital",
+      region: "Cusco",
+      name: "Municipalidad Distrital de Wanchaq",
+      works: 21,
+    },
+    {
+      scope: "Municipalidad Provincial",
+      region: "Tacna",
+      name: "Municipalidad Provincial de Tacna",
+      works: 79,
+    },
+    {
+      scope: "Municipalidad Provincial",
+      region: "Cusco",
+      name: "Municipalidad Provincial de Urubamba",
+      works: 34,
+    },
+  ];
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-6 py-12 md:px-10 md:py-16">
@@ -192,7 +275,7 @@ function OnePager() {
         <section className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
           <Stat value="S/24B" label="en inversión pública local gestionada al año en Perú" />
           <Stat value="~1,874" label="municipios con capacidad digital de monitoreo casi nula" />
-          <Stat value="3" label="pilotos activos con acuerdos institucionales firmados" />
+          <Stat value="8" label="municipalidades con monitor de obras ya operando" />
           <Stat value="+331" label="obras paralizadas solo en GORE Puno (Contraloría 2025)" />
         </section>
 
@@ -220,27 +303,30 @@ function OnePager() {
           <div>
             <SectionLabel>Tracción</SectionLabel>
             <h2 className="font-serif text-2xl leading-snug">
-              Pilotos en vivo. Datos reales. Reconocimiento en curso.
+              Implementación real. Datos en uso. Reconocimiento en curso.
             </h2>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               {[
                 <>
                   <span className="font-semibold text-foreground">
-                    Municipalidad Provincial de Tacna
+                    Monitor de Obras en Riesgo
                   </span>{" "}
-                  — acuerdo firmado; datos reales cargados en plataforma
+                  — ya operando en Miraflores, Rapayan, Sallique, Santiago de Surco, Tabaconas,
+                  Wanchaq, Tacna y Urubamba
                 </>,
                 <>
                   <span className="font-semibold text-foreground">
-                    Municipalidad de Coronel Portillo
+                    Asistente Normativo con IA (RAG)
                   </span>{" "}
-                  — piloto activo con subdominio propio desplegado
+                  — desarrollado y listo para responder consultas técnicas con base normativa
+                  verificable
                 </>,
                 <>
                   <span className="font-semibold text-foreground">
-                    Municipalidad de Urubamba
+                    Checklist Digital Inteligente
                   </span>{" "}
-                  — piloto confirmado, inicio en julio 2026
+                  — próximamente, para revisar expedientes y detectar observaciones antes de la
+                  aprobación
                 </>,
                 <>
                   <span className="font-semibold text-foreground">
@@ -252,6 +338,10 @@ function OnePager() {
                 <>
                   🏆 <span className="font-semibold text-foreground">Ganadores</span> — Reto de
                   Innovación Abierta, Municipalidad de Miraflores — junio 2026
+                </>,
+                <>
+                  🏆 <span className="font-semibold text-foreground">Ganadores</span> — eAwards
+                  2026, NTT DATA Foundation
                 </>,
                 <>
                   <span className="font-semibold text-foreground">PUCP</span> — caso real en
@@ -282,29 +372,27 @@ function OnePager() {
         <section className="mt-6 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
           <ModuleCard
             number="01"
-            status="En construcción"
-            statusTone="amber"
-            tag="Componente IA"
-            tagTone="outline"
-            title="Checklist Digital Inteligente"
-            description="Revisa automáticamente si un expediente técnico cumple los requisitos normativos vigentes — Invierte.pe, RNE, Directiva 001-2019-EF — antes de que llegue a aprobación."
+            status="Desarrollado"
+            statusTone="green"
+            title="Monitor de Obras en Riesgo"
+            description="Tablero en tiempo real que agrega datos de MEF, INFOBRAS y SEACE para detectar obras en riesgo de paralización antes de que ocurra. Ya opera en municipalidades con seguimiento activo de obras."
             bullets={[
-              "Detección de errores y observaciones priorizadas",
-              "IA aplicada a la lectura de documentos técnicos",
-              "Reducción del ciclo de revisión",
+              "Alertas automáticas por proyecto y nivel de riesgo",
+              "Trazabilidad completa del estado de cada obra",
+              "Arquitectura multi-municipio: una plataforma, múltiples instancias",
             ]}
           />
           <ModuleCard
             dark
             number="02"
-            status="En construcción"
-            statusTone="amber"
+            status="Desarrollado"
+            statusTone="green"
             tag="Módulo central de IA"
             tagTone="solid"
             title="Asistente Normativo con IA (RAG)"
-            description="Asistente de lenguaje natural entrenado en la normativa peruana de inversión pública. Responde consultas técnicas en segundos — sin búsquedas en PDFs dispersos ni esperas."
+            description="Asistente de lenguaje natural entrenado en normativa peruana de inversión pública. Responde consultas técnicas en segundos, con trazabilidad y soporte para equipos que necesitan criterio normativo al instante."
             bullets={[
-              "Base: Invierte.pe, RNE, directivas MEF, circulares ANIN",
+              "Base normativa: Invierte.pe, RNE, directivas MEF y circulares",
               "Respuestas con citas normativas verificables",
               "Accesible para funcionarios sin perfil especializado",
               "Actualizable ante cambios normativos en tiempo real",
@@ -313,16 +401,43 @@ function OnePager() {
           />
           <ModuleCard
             number="03"
-            status="Desarrollado"
-            statusTone="green"
-            title="Monitor de Obras en Riesgo"
-            description="Tablero en tiempo real que agrega datos de MEF, INFOBRAS y SEACE para detectar obras en riesgo de paralización antes de que ocurra. Ya operando en los pilotos activos."
+            status="Próximamente"
+            statusTone="amber"
+            tag="IA preventiva"
+            tagTone="outline"
+            title="Checklist Digital Inteligente"
+            description="Revisa expedientes técnicos contra requisitos normativos vigentes antes de que entren a aprobación. La IA identifica observaciones, vacíos y prioridades para acelerar la revisión técnica."
             bullets={[
-              "Alertas automáticas por proyecto y nivel de riesgo",
-              "Trazabilidad completa del estado de cada obra",
-              "Arquitectura multi-municipio: una plataforma, múltiples instancias",
+              "Detección de errores y observaciones priorizadas",
+              "IA aplicada a la lectura de documentos técnicos",
+              "Reducción del ciclo de revisión de expedientes",
+              "Enfoque preventivo antes de la aprobación",
             ]}
           />
+        </section>
+
+        {/* Municipalities */}
+        <section className="mt-16">
+          <SectionLabel>Municipalidades activas</SectionLabel>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="font-serif text-2xl leading-snug">
+                Gobiernos locales que ya lo están usando.
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                Despliegues reales del Monitor de Obras en Riesgo con seguimiento activo por
+                municipalidad.
+              </p>
+            </div>
+            <p className="text-sm font-medium text-accent-gold">
+              Elegí una municipalidad para entrar a su monitor
+            </p>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {municipalities.map((municipality) => (
+              <MunicipalityCard key={municipality.name} {...municipality} />
+            ))}
+          </div>
         </section>
 
         {/* Business model */}
