@@ -191,12 +191,6 @@ function OnePager() {
     },
     {
       scope: "Municipalidad Distrital",
-      region: "Ancash",
-      name: "Municipalidad Distrital de Rapayan",
-      works: 28,
-    },
-    {
-      scope: "Municipalidad Distrital",
       region: "Cajamarca",
       name: "Municipalidad Distrital de Sallique",
       works: 15,
@@ -311,14 +305,14 @@ function OnePager() {
                   <span className="font-semibold text-foreground">
                     Monitor de Obras en Riesgo
                   </span>{" "}
-                  — ya operando en Miraflores, Rapayan, Sallique, Santiago de Surco, Tabaconas,
+                  — Ya operando en Miraflores, Sallique, Santiago de Surco, Tabaconas,
                   Wanchaq, Tacna y Urubamba
                 </>,
                 <>
                   <span className="font-semibold text-foreground">
                     Asistente Normativo con IA (RAG)
                   </span>{" "}
-                  — desarrollado y listo para responder consultas técnicas con base normativa
+                  — Desarrollado y listo para responder consultas técnicas con base normativa
                   verificable
                 </>,
                 <>
